@@ -15,6 +15,6 @@ namespace Infrastructure.Service
         public UserRepository(DataContexts context) : base(context)
         {
         }
-    {
+    
     }
 }
