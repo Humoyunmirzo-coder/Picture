@@ -1,54 +1,62 @@
 ﻿using Aplication.Services;
 using Domain;
+using Domain.Exceptions;
+using Ifrastructure.DataAction;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.Serialization.DataContracts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ifrastructure.Service
 {
-
-
     public class RepositoryBase<T, TId> : IRepositoryeBase<T, TId> where T : ModelBase<TId>
     {
-        private readonly DataContract _contract;
+        private readonly DataContexts _contract;
 
-        public RepositoryBase(DataContract contract)
+        public RepositoryBase(DataContexts contract)
         {
             _contract = contract;
         }
-        public ValueTask<T> CreateAsync(T data)
+
+
+
+        public async ValueTask<T> CreateAsync(T data)
         {
-            throw new NotImplementedException();
+            var result = DbGetSet().Add(data);
+            _contract.SaveChanges();
+            return result.Entity;
         }
 
         public DbSet<T> DbGetSet()
         {
-            throw new NotImplementedException();
+            return _contract.Set<T>();
         }
 
-        public ValueTask<T> DeleteByIdAsync(TId id)
+        public async ValueTask<T> DeleteByIdAsync(TId id)
         {
-            throw new NotImplementedException();
+            var data = await GetByIdAsync(id);
+            var entityResult = DbGetSet().Remove(data);
+            await _contract.SaveChangesAsync();
+            return entityResult.Entity;
         }
 
-        public ValueTask<IEnumerable<T>> GetAllAsync()
+        public async ValueTask<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await DbGetSet().ToListAsync();
         }
 
-        public ValueTask<T> GetByIdAsync(TId id)
+        public async ValueTask<T> GetByIdAsync(TId id)
         {
-            throw new NotImplementedException();
+            var data = await DbGetSet().FirstOrDefaultAsync(x => x.Id.Equals(id));
+            if (data is null)
+                throw new CustomException(404, "Data not found ");
+            return data;
+
         }
 
-        public ValueTask<T> UpdateAsync(T data)
+        public async ValueTask<T> UpdateAsync(T data)
         {
-            throw new NotImplementedException();
+            var resultUpdate = DbGetSet().Update(data);
+            await _contract.SaveChangesAsync();
+            return resultUpdate.Entity;
         }
+
     }
 }

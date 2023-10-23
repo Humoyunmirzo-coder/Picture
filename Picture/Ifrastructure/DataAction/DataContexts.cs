@@ -1,5 +1,7 @@
-﻿using Domain.Entity;
+﻿using Domain;
+using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ifrastructure.DataAction
 {
-    public  class DataContext : DbContext
+    public  class DataContexts : DbContext
     {
         protected DbSet<User> User {  get; set; }
         protected DbSet<Photo> Photos {  get; set; }
@@ -21,12 +23,11 @@ namespace Ifrastructure.DataAction
         //    Photos = photos;
         //    Friends = friends;
         //}
-        public DataContext (DbContextOptions <DataContext> options)
+        public DataContexts (DbContextOptions <DataContexts> options)
             : base (options)
         {
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        //    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
        
-
     }
 }
