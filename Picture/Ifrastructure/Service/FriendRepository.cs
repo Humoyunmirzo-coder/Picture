@@ -3,7 +3,7 @@ using Domain.Entity;
 using Ifrastructure.DataAction;
 using Ifrastructure.Service;
 
-namespace Infrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     public class FriendRepository : RepositoryBase<Friend, long>, Ifriends
     {

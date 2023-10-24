@@ -1,6 +1,8 @@
-﻿namespace PictureSharing.Services.Interface;
-
-public interface ITokenService
+﻿namespace Picture.Infrastructure.Service.Interface
 {
-    public ValueTask<string> GetTokenAsync(string email,string password);
+
+    public interface ITokenService
+    {
+        public ValueTask<string> GetTokenAsync(string email, string password);
+    }
 }

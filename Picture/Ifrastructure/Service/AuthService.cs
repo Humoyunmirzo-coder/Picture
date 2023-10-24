@@ -5,9 +5,9 @@ using Domain.Exceptions;
 using Domain.ModelDTO;
 using Ifrastructure.DataAction;
 using Microsoft.EntityFrameworkCore;
-using PictureSharing.Services.Interface;
+using Picture.Infrastructure.Service.Interface;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service 
 {
 
     public class AuthService : IAuthService

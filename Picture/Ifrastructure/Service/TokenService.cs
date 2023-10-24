@@ -5,13 +5,14 @@ using Ifrastructure.DataAction;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using PictureSharing.Services.Interface;
+using Picture.Infrastructure.Service.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.AccessControl;
 using System.Security.Claims;
 using System.Text;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
+
 {
 
 
@@ -30,6 +31,7 @@ namespace Ifrastructure.Service
             string audience = _configuration.GetSection("Authentication")["Audience"];
             int expiresInMinutes = _configuration.GetSection("Authentication").GetValue<int>("ExpireAtInMinutes");
 
+
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
             var claims = new List<Claim>()
@@ -39,14 +41,15 @@ namespace Ifrastructure.Service
         };
 
 
-            var jwtSecurityToken = new JwtSecurityToken(
+             var jwtSecurityToken = new JwtSecurityToken(
                 claims: claims,
                 signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256),
                 issuer: issuer,
                 audience: audience,
                 expires: DateTime.Now.AddMinutes(expiresInMinutes)
             );
-            return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            string result = jwtSecurityToken.ToString();
+            return ValueTask.FromResult(result);
 
         }
     }

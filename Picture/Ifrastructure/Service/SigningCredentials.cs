@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     internal class SigningCredentials
     {

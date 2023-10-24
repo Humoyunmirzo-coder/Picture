@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using Microsoft.AspNetCore.Http;
 
-namespace Aplication.Services
+namespace Picture.Infrastructure.Service.Interface
 {
     public interface IPhotoService
     {

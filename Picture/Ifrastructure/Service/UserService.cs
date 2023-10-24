@@ -5,9 +5,10 @@ using Domain.ModelDTO;
 using ServiceStack.Auth;
 using Domain;
 using Microsoft.EntityFrameworkCore;
-using Ifrastructure.DataAction1;
+using Picture.Infrastructure.Service.Interface;
+using Picture.Infrastructure.Interface;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     public class UserService : IUserService
     {

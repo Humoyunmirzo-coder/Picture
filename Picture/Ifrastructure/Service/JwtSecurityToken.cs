@@ -1,6 +1,7 @@
-﻿using System.Security.Claims;
+﻿using Ifrastructure.Service;
+using System.Security.Claims;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     internal class JwtSecurityToken
     {

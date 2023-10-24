@@ -8,9 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Service
+namespace Picture.Infrastructure.Service
 {
-    public  class UserRepository : RepositoryBase<User, long>, IUser
+
+
+    public  class UserRepository : RepositoryBase<User, long>
     {
         public UserRepository(DataContexts context) : base(context)
         {

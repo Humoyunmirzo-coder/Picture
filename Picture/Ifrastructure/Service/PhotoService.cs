@@ -1,18 +1,16 @@
 ﻿using Aplication.Services;
-using Aplication.Servicess;
 using Domain;
 using Domain.Entity;
 using Domain.Enum;
 using Domain.Exceptions;
 using Domain.ModelDTO;
 using Ifrastructure.DataAction;
-using Infrastructure.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using PictureSharing.Services.Interface;
+using Picture.Infrastructure.Service.Interface;
 using ServiceStack;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     public class PhotoService : IPhotoService
     {

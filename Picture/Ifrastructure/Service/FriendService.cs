@@ -1,16 +1,14 @@
 ﻿using Aplication.Services;
-using Aplication.Servicess;
 using Domain;
 using Domain.Entity;
 using Domain.Enum;
 using Domain.Exceptions;
 using Domain.ModelDTO;
 using Ifrastructure.DataAction;
-using Infrastructure.Service;
 using Microsoft.EntityFrameworkCore;
-using PictureSharing.Services.Interface;
+using Picture.Infrastructure.Service.Interface;
 
-namespace Ifrastructure.Service
+namespace Picture.Infrastructure.Service
 {
     public class FriendService : IFriendService
     {

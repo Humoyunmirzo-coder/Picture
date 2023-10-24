@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using Domain.ModelDTO;
 
-namespace Aplication.Servicess
+namespace Picture.Infrastructure.Service.Interface
 {
     public interface IFriendService
     {

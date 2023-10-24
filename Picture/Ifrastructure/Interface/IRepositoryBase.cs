@@ -5,7 +5,7 @@ using Ifrastructure.DataAction;
 using Ifrastructure.Service;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Service
+namespace Picture.Infrastructure.Interface
 {
     public interface IRepositoryBase<T, TId> where T : ModelBase<TId>
     {
