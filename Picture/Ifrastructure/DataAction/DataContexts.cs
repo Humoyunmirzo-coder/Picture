@@ -1,12 +1,14 @@
-﻿using Domain.Entity;
+﻿using Aplication.Services;
+using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using ServiceStack;
 
 namespace Ifrastructure.DataAction
 {
     public class DataContexts : DbContext
     {
 
-       public DataContexts() { }
+        public DataContexts() { }
 
         protected DbSet<User> User { get; set; }
         protected DbSet<Photo> Photos { get; set; }
@@ -24,27 +26,26 @@ namespace Ifrastructure.DataAction
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Friend va User sinflari uchun aloqalarni belgilaymiz
-            modelBuilder.Entity<Friend>()
-                // Birinchi aloqa: Friend.Friends va User
-                .HasOne(f => f.Friends) // Friends xususiyatini belgilaymiz
-                .WithMany(
-                modelBuilder.Entity<Friend>()    // Birinchi aloqa: Friend.Friends va User                     
-    .HasOne(f => f.Friends) // Friends xususiyatini belgilaymiz
-    .WithMany(u => u.Friendid) // User sinfidagi Friends xususiyatini beramiz
-    .HasForeignKey(f => f.FriendId) // Tashqi kalit xususiyatini belgilaymiz
-    .OnDelete(DeleteBehavior.Restrict) // O'chirish harakati uchun siyosatni belgilaymiz
-                ) // Friends xususiyati bir nechta User obyektiga mos kelishi mumkin
-                .HasForeignKey(f => f.FriendId) // Tashqi kalit xususiyatini belgilaymiz
-                .OnDelete(DeleteBehavior.Restrict); // O'chirish harakati uchun siyosatni belgilaymiz
+          
 
             modelBuilder.Entity<Friend>()
                 // Ikkinchi aloqa: Friend.Owner va User
-                .HasOne(f => f.Owner) // Owner xususiyatini belgilaymiz
-                .WithMany() // Owner xususiyati bir nechta User obyektiga mos kelishi mumkin
-                .HasForeignKey(f => f.Owner) // Tashqi kalit xususiyatini belgilaymiz
-                .OnDelete(DeleteBehavior.Restrict); // O'chirish harakati uchun siyosatni belgilaymiz
+                 modelBuilder.Entity<Friend>()
+            .HasOne(f=> f.FriendId)
+            .WithOne(p => p.Product)
+            .HasForeignKey<Warranti>(p => p.Product);
+
+            modelBuilder.Entity<User>()
+    // Birinchi aloqa: User va Friend.Friends
+    .HasOne(u => u.Friendid) // Friends xususiyatini belgilaymiz
+    .WithMany() // Friend sinfidagi Friends xususiyatini beramiz
+    .HasForeignKey(u => u.Friendid) // Tashqi kalit xususiyatini belgilaymiz
+    .OnDelete(DeleteBehavior.Restrict); // O'chirish harakati uchun siyosatni belgilaymiz
+
+
         }
+     
+
 
 
 
