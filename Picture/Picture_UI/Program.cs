@@ -7,16 +7,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ServiceStack;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Picture_UI
 {
     public class Program
     {
-        private static readonly object JwtBearerDefaults;
-
-        public static TimeSpan ClockSkew { get; private set; }
-
-        public static void Main(string[] args, string authenticationScheme)
+        public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -58,11 +55,10 @@ namespace Picture_UI
             });
 
 
-            builder
-                .Services
+            builder.Services
                 .AddAuthentication(options =>
                 {
-                    options.DefaultScheme = Microsoft.AspNetCore.Authentication.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(options =>
                 {
