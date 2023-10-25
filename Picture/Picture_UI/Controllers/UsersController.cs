@@ -28,6 +28,6 @@ namespace Picture_UI.Controllers
 
         [HttpDelete, Authorize]
         public async ValueTask<ApiResult<User>> DeleteAsync(long id)
-            => await _userRepository.DeleteAsync(id);
+            => await _userRepository.DeleteByIdAsync(id);
     }
 }

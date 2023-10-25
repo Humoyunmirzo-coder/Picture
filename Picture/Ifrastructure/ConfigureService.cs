@@ -17,17 +17,18 @@ namespace Picture.Infrastructure
         {
 
             services.AddScoped<ExceptionHandlerMiddleware>();
-            //  services.AddScoped<IUserRepository, UserRepository >();
+              services.AddScoped<IUserRepository, UserRepository >();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IPhotoRepository, IPhotoRepository>();
+            services.AddScoped<IPhotoRepository, PhotoRepostory>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IFriendRepository, IFriendRepository>();
+            services.AddScoped<IFriendRepository, FriendRepository>();
             services.AddScoped<IFriendService, FriendService>();
             services.AddDbContext<DataContexts>(options =>
             options.UseNpgsql(configuration.GetConnectionString("PictureConfugretion")));
 
         }
+
     }
 }

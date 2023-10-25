@@ -1,7 +1,16 @@
 ﻿using Aplication.Services;
 using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using ServiceStack;
+using System.Text;
+using System.Xml.Linq;
+using System;
+using System.Collections.Specialized;
+using System.Configuration;
+
 
 namespace Ifrastructure.DataAction
 {
@@ -26,28 +35,22 @@ namespace Ifrastructure.DataAction
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
+            modelBuilder
+                .Entity<User>()
+                .HasMany(photo => photo.Photos)
+                .WithOne(user =>user.User)
+                .HasForeignKey(us=>us.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Friend>()
-                // Ikkinchi aloqa: Friend.Owner va User
-                .HasOne(f => f.FriendId) // Owner xususiyatini belgilaymiz
-                .WithMany(f = ) // Owner xususiyati bir nechta User obyektiga mos kelishi mumkin
-                .HasForeignKey(f => f.Owner); // Tashqi kalit xususiyatini belgilaymiz
-
-
-                modelBuilder.Entity<User>()
-    // Birinchi aloqa: User va Friend.Friends
-    .HasOne(u => u.Friendid) // Friends xususiyatini belgilaymiz
-    .WithMany() // Friend sinfidagi Friends xususiyatini beramiz
-    .HasForeignKey(u => u.Friendid) // Tashqi kalit xususiyatini belgilaymiz
-    .OnDelete(DeleteBehavior.Restrict); // O'chirish harakati uchun siyosatni belgilaymiz
-
+            modelBuilder
+                .Entity<User>()   
+                .HasMany(frinend =>frinend.Friends)
+                .WithOne(user =>user.Owner)
+                .HasForeignKey(us=>us.Userid)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
-     
-
-
-
-
     }
+
+    
 }
