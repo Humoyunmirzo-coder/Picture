@@ -30,12 +30,12 @@ namespace Ifrastructure.DataAction
 
             modelBuilder.Entity<Friend>()
                 // Ikkinchi aloqa: Friend.Owner va User
-                 modelBuilder.Entity<Friend>()
-            .HasOne(f=> f.FriendId)
-            .WithOne(p => p.Product)
-            .HasForeignKey<Warranti>(p => p.Product);
+                .HasOne(f => f.FriendId) // Owner xususiyatini belgilaymiz
+                .WithMany(f = ) // Owner xususiyati bir nechta User obyektiga mos kelishi mumkin
+                .HasForeignKey(f => f.Owner); // Tashqi kalit xususiyatini belgilaymiz
 
-            modelBuilder.Entity<User>()
+
+                modelBuilder.Entity<User>()
     // Birinchi aloqa: User va Friend.Friends
     .HasOne(u => u.Friendid) // Friends xususiyatini belgilaymiz
     .WithMany() // Friend sinfidagi Friends xususiyatini beramiz
