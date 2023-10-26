@@ -8,6 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ServiceStack;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
+using Picture.Infrastructure.Interface;
+using Picture.Infrastructure.Service.Interface;
+using Picture.Infrastructure.Service;
 
 namespace Picture_UI
 {
@@ -18,12 +22,20 @@ namespace Picture_UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddIfrastuctureServices(builder.Configuration);
+       //    builder.Services.AddIfrastuctureServices(builder.Configuration);
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddScoped<ExceptionHandlerMiddleware>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPhotoRepository, PhotoRepostory>();
+            builder.Services.AddScoped<IPhotoService, PhotoService>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IFriendRepository, FriendRepository>();
+            builder.Services.AddScoped<IFriendService, FriendService>();
 
 
             builder.Services.AddSwaggerGen(options =>

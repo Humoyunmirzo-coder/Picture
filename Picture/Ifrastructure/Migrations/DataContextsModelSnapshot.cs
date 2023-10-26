@@ -55,7 +55,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("Userid");
 
-                    b.ToTable("Friends");
+                    b.ToTable("Friends", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entity.Photo", b =>
@@ -81,7 +81,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Photos");
+                    b.ToTable("Photos", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entity.User", b =>
