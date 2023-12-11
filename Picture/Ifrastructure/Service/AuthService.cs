@@ -33,9 +33,6 @@ namespace Picture.Infrastructure.Service
             var token = await _tokenService.GetTokenAsync(user.Email, user.Password);
             return token;
         }
-
-     
-
         public async ValueTask<User> RegistrationAsync(RegistrationDto dto)
         {
             if (dto is null)

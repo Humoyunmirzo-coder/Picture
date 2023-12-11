@@ -26,13 +26,9 @@ namespace Ifrastructure.DataAction
 
         public DataContexts(DbContextOptions<DataContexts> options)
             : base(options)
-        {
+        { }
 
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host= ::1 ; Port=5432 ;Database = Picture; User Id = postgres; Password = 2244;");
-        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder

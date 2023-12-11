@@ -30,9 +30,9 @@ namespace Picture_UI
             {
                 OpenApiSecurityScheme scheme = new OpenApiSecurityScheme()
                 {
-                    Description = "Micrasoft VisualStudio",
+                    Description = "JWT Micrasoft ",
                     In = ParameterLocation.Header,
-                    Name = "Micrasoft",
+                    Name = "JWT",
                   Scheme = JwtBearerDefaults.AuthenticationScheme,
                     Type = SecuritySchemeType.Http,
                     Reference = new OpenApiReference()

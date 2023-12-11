@@ -11,6 +11,8 @@ namespace Picture.Infrastructure.Service
         private string? audience;
         private DateTime expires;
 
+
+
         public JwtSecurityToken(List<Claim> claims, SigningCredentials signingCredentials, string? issuer, string? audience, DateTime expires)
         {
             this.claims = claims;

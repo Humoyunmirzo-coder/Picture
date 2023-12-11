@@ -40,7 +40,6 @@ namespace Picture.Infrastructure.Service
             new Claim("password", password)
         };
 
-
              var jwtSecurityToken = new JwtSecurityToken(
                 claims: claims,
                 signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256),
