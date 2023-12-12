@@ -24,8 +24,6 @@ namespace Picture_UI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
-
             builder.Services.AddSwaggerGen(options =>
             {
                 OpenApiSecurityScheme scheme = new OpenApiSecurityScheme()
@@ -81,7 +79,6 @@ namespace Picture_UI
                     };
 
                 });
-
 
             builder.Services
                 .AddAuthorization();
